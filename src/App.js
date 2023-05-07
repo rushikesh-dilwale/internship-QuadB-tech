@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css"
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import Homepage from "./HomePage";
+import Summery from "./Summery";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+
+
+const App = () => {
+ 
+  const [newData,  setnewData] = useState([])
+
+  useEffect(() => {
+      getData()
+      
+   });
+
+
+   
+const getData=async()=>{
+  const result= await axios.get("https://api.tvmaze.com/search/shows?q=all")
+  
+  setnewData(result.data)
+  // console.log(result.data)
 }
 
-export default App;
+
+  return(
+    <>
+    <BrowserRouter>
+    <Routes>
+    <Route exact path="/Summery" element={< Summery data={newData} />}/>
+    <Route exact path="/" element={<Homepage/>}/>
+  
+    </Routes>
+    </BrowserRouter>
+    
+      
+  
+   
+
+    </>
+   
+   
+    
+  )
+
+}
+export default App 

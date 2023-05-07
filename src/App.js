@@ -7,9 +7,6 @@ import axios from "axios";
 
 
 
-
-
-
 const App = () => {
  
   const [newData,  setnewData] = useState([])
@@ -18,8 +15,6 @@ const App = () => {
       getData()
       
    });
-
-
    
 const getData=async()=>{
   const result= await axios.get("https://api.tvmaze.com/search/shows?q=all")
@@ -27,7 +22,6 @@ const getData=async()=>{
   setnewData(result.data)
   // console.log(result.data)
 }
-
 
   return(
     <>
@@ -39,13 +33,8 @@ const getData=async()=>{
     </Routes>
     </BrowserRouter>
     
-      
-  
-   
 
-    </>
-   
-   
+    </> 
     
   )
 
